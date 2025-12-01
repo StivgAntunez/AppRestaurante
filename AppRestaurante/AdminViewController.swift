@@ -1,11 +1,5 @@
-//
-//  AdminViewController.swift
-//  AppRestaurante
-//
-//  Created by rcwtf00 on 18/11/25.
-//
-
 import UIKit
+import FirebaseAuth
 
 class AdminViewController: UIViewController {
 
@@ -15,15 +9,47 @@ class AdminViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func btnCategoriasPressed(_ sender: Any) {
+        irACategorias()
     }
-    */
+    
+    @IBAction func cerrarSesion(_ sender: Any) {
 
+        let alerta = UIAlertController(
+            title: "Cerrar sesión",
+            message: "¿Desea cerrar sesión?",
+            preferredStyle: .alert
+        )
+
+        let btnCancelar = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+
+        let btnAceptar = UIAlertAction(title: "Aceptar", style: .destructive) { _ in
+            do {
+                try Auth.auth().signOut()
+
+                // Volver a Login
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+
+                loginVC.modalPresentationStyle = .fullScreen
+                self.present(loginVC, animated: true)
+
+            } catch let error {
+                print("Error al cerrar sesión: \(error.localizedDescription)")
+            }
+        }
+
+        alerta.addAction(btnCancelar)
+        alerta.addAction(btnAceptar)
+
+        present(alerta, animated: true)
+    }
+
+    func irACategorias() {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "CategoryViewController")
+        vc?.modalPresentationStyle = .fullScreen
+        present(vc!, animated: true)
+    }
+
+    
 }

@@ -1,8 +1,14 @@
-//
-//  UIImageView.swift
-//  AppRestaurante
-//
-//  Created by rcwtf00 on 28/11/25.
-//
+import UIKit
 
-import Foundation
+extension UIImageView {
+    func loadFromURL(_ url: String) {
+        guard let url = URL(string: url) else { return }
+        URLSession.shared.dataTask(with: url) { data, _, _ in
+            if let data = data {
+                DispatchQueue.main.async {
+                    self.image = UIImage(data: data)
+                }
+            }
+        }.resume()
+    }
+}
