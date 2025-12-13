@@ -1,13 +1,13 @@
 //
-//  CajeroViewController.swift
+//  MesasViewController.swift
 //  AppRestaurante
 //
-//  Created by rcwtf00 on 18/11/25.
+//  Created by rcwtf00 on 3/12/25.
 //
 
 import UIKit
 
-class CajeroViewController: UIViewController {
+class MesasViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
