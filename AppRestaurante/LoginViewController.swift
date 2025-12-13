@@ -29,19 +29,19 @@ class LoginViewController: UIViewController {
             return
         }
         
-        // Validar formato de correo
+        
         if !esCorreoValido(correo) {
             mostrarAlerta(titulo: "Correo inválido", mensaje: "Ingrese un correo electrónico válido.")
             return
         }
         
-        // Validar longitud mínima de contraseña (opcional)
+       
         if password.count < 6 {
             mostrarAlerta(titulo: "Contraseña débil", mensaje: "La contraseña debe tener al menos 6 caracteres.")
             return
         }
 
-        // Autenticar con Firebase
+       
         Auth.auth().signIn(withEmail: correo, password: password) { result, error in
             if let error = error {
                 self.mostrarAlerta(titulo: "Login fallido", mensaje: error.localizedDescription)
@@ -56,7 +56,7 @@ class LoginViewController: UIViewController {
     }
     
     func esCorreoValido(_ correo: String) -> Bool {
-        // Regex simple pero efectiva para validar email
+      
         let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         let pred = NSPredicate(format: "SELF MATCHES %@", regex)
         return pred.evaluate(with: correo)
@@ -68,9 +68,7 @@ class LoginViewController: UIViewController {
         present(alert, animated: true)
     }
 
-    // ------------------------------
-    // FIRESTORE: OBTENER ROL
-    // ------------------------------
+  
     func obtenerRol(uid: String) {
         db.collection("usuarios").document(uid).getDocument { document, error in
             if let error = error {
@@ -93,7 +91,7 @@ class LoginViewController: UIViewController {
         switch rol {
         case "admin": irA("AdminViewController")
         case "mesero": irA("MeseroViewController")
-        case "cajero": irA("CajeroViewController")
+        case "cocinero": irA("CocineroViewController")
         default:
             mostrarAlerta(titulo: "Error", mensaje: "Rol desconocido.")
         }

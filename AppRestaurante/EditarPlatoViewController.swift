@@ -16,7 +16,7 @@ class EditarPlatoViewController: UIViewController, UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Mostrar datos actuales
+      
         txtNombre.text = plato.nombre
         txtPrecio.text = "\(plato.precio)"
 
@@ -25,9 +25,7 @@ class EditarPlatoViewController: UIViewController, UIImagePickerControllerDelega
         imgPlato.clipsToBounds = true
     }
 
-    // ============================================================
-    // Seleccionar nueva imagen
-    // ============================================================
+  
     @IBAction func cambiarImagen(_ sender: Any) {
         let picker = UIImagePickerController()
         picker.delegate = self
@@ -42,9 +40,7 @@ class EditarPlatoViewController: UIViewController, UIImagePickerControllerDelega
         dismiss(animated: true)
     }
 
-    // ============================================================
-    // Guardar cambios
-    // ============================================================
+    
     @IBAction func guardarCambios(_ sender: Any) {
         print("Boton de agregar")
 
@@ -69,9 +65,7 @@ class EditarPlatoViewController: UIViewController, UIImagePickerControllerDelega
         }
     }
 
-    // ============================================================
-    // Actualizar registro en Firestore
-    // ============================================================
+  
     func actualizarFirestore(nombre: String, precio: Double, imagenURL: String) {
 
         db.collection("categorias")

@@ -6,7 +6,7 @@ class DetallePlatoViewController: UIViewController {
     var plato: Plato!
     var categoriaId: String = ""
 
-    var onPlatoEliminado: (() -> Void)?   // 🔥 Callback para avisar al padre
+    var onPlatoEliminado: (() -> Void)?
 
     @IBOutlet weak var imgPlato: UIImageView!
     @IBOutlet weak var lblNombre: UILabel!
@@ -20,9 +20,7 @@ class DetallePlatoViewController: UIViewController {
         imgPlato.loadFromURL(plato.imagenURL)
     }
 
-    // ============================================================
-    // EDITAR PLATO
-    // ============================================================
+ 
     @IBAction func editarPlato(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(
             withIdentifier: "EditarPlatoVC"
@@ -34,9 +32,7 @@ class DetallePlatoViewController: UIViewController {
         present(vc, animated: true)
     }
 
-    // ============================================================
-    // 🚨 ELIMINAR PLATO
-    // ============================================================
+ 
     @IBAction func eliminarPlato(_ sender: Any) {
 
         let alert = UIAlertController(
@@ -74,7 +70,7 @@ class DetallePlatoViewController: UIViewController {
 
                 print("✅ Plato eliminado correctamente")
 
-                // Notificar al padre (PlatosViewController)
+               
                 self.onPlatoEliminado?()
 
                 // Cerrar modal

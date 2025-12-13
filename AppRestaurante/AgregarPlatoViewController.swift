@@ -14,7 +14,7 @@ class AgregarPlatoViewController: UIViewController,
 
     var imagenSeleccionada: UIImage?
 
-    // callback para actualizar tabla al guardar
+  
     var onPlatoGuardado: (() -> Void)?
 
     override func viewDidLoad() {
@@ -24,9 +24,7 @@ class AgregarPlatoViewController: UIViewController,
         imgPlato.clipsToBounds = true
     }
 
-    // ============================================================
-    // ELEGIR FOTO
-    // ============================================================
+ 
     @IBAction func elegirFoto(_ sender: Any) {
 
         let picker = UIImagePickerController()
@@ -36,21 +34,19 @@ class AgregarPlatoViewController: UIViewController,
         present(picker, animated: true)
     }
 
-    // ============================================================
-    // GUARDAR PLATO (Cloudinary)
-    // ============================================================
+    
     @IBAction func guardarPlato(_ sender: Any) {
 
         guard let nombre = txtNombre.text, !nombre.isEmpty else { return }
         let precio = Double(txtPrecio.text ?? "0") ?? 0
 
-        // No eligió imagen → guardamos sin URL
+       
         guard let imagen = imagenSeleccionada else {
             guardarPlatoEnFirestore(nombre: nombre, precio: precio, imagenURL: "")
             return
         }
 
-        // Subir a Cloudinary
+        
         CloudinaryService.shared.uploadImage(imagen) { url in
 
             DispatchQueue.main.async {
@@ -71,9 +67,7 @@ class AgregarPlatoViewController: UIViewController,
         }
     }
 
-    // ============================================================
-    // GUARDAR EN FIRESTORE
-    // ============================================================
+
     func guardarPlatoEnFirestore(nombre: String, precio: Double, imagenURL: String) {
 
         db.collection("categorias")
@@ -90,9 +84,7 @@ class AgregarPlatoViewController: UIViewController,
           }
     }
 
-    // ============================================================
-    // PICKER FOTO
-    // ============================================================
+  
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 

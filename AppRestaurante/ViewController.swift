@@ -1,9 +1,3 @@
-//
-//  ViewController.swift
-//  AppRestaurante
-//
-//  Created by rcwtf00 on 17/11/25.
-//
 
 import UIKit
 

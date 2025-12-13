@@ -20,9 +20,7 @@ class PlatosViewController: UIViewController,
         cargarPlatos()
     }
 
-    // ============================================================
-    // CARGAR PLATOS
-    // ============================================================
+   
     func cargarPlatos() {
 
         db.collection("categorias")
@@ -53,9 +51,7 @@ class PlatosViewController: UIViewController,
             }
     }
 
-    // ============================================================
-    // TABLEVIEW
-    // ============================================================
+  
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
         return platos.count
@@ -81,9 +77,7 @@ class PlatosViewController: UIViewController,
         return cell
     }
 
-    // ============================================================
-    // TOCAR CELDA → DETALLE
-    // ============================================================
+  
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
 
@@ -94,7 +88,7 @@ class PlatosViewController: UIViewController,
         vc.plato = platos[indexPath.row]
         vc.categoriaId = categoriaId
 
-        // 🔥 Callback para cuando eliminen el plato
+        
         vc.onPlatoEliminado = {
             self.cargarPlatos()
         }
@@ -102,9 +96,7 @@ class PlatosViewController: UIViewController,
         present(vc, animated: true)
     }
 
-    // ============================================================
-    // ABRIR AGREGAR PLATO
-    // ============================================================
+
     @IBAction func agregarPlato(_ sender: Any) {
 
         let vc = storyboard?.instantiateViewController(

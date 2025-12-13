@@ -5,12 +5,14 @@ class AdminViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func btnCategoriasPressed(_ sender: Any) {
         irACategorias()
+    }
+
+    @IBAction func btnMesasPressed(_ sender: Any) {
+        irAMesas()
     }
     
     @IBAction func cerrarSesion(_ sender: Any) {
@@ -27,7 +29,7 @@ class AdminViewController: UIViewController {
             do {
                 try Auth.auth().signOut()
 
-                // Volver a Login
+                // Volver al login
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
 
@@ -51,5 +53,9 @@ class AdminViewController: UIViewController {
         present(vc!, animated: true)
     }
 
-    
+    func irAMesas() {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "MesasViewController")
+        vc?.modalPresentationStyle = .fullScreen
+        present(vc!, animated: true)
+    }
 }

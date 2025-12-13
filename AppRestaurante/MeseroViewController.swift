@@ -1,29 +1,18 @@
-//
-//  MeseroViewController.swift
-//  AppRestaurante
-//
-//  Created by rcwtf00 on 18/11/25.
-//
-
 import UIKit
 
 class MeseroViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func btnIrAPedidoPressed(_ sender: Any) {
+        irAPedidos()
     }
-    */
-
+    
+    func irAPedidos() {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "MeseroPedidoViewController")
+        vc?.modalPresentationStyle = .fullScreen
+        present(vc!, animated: true)
+    }
 }
